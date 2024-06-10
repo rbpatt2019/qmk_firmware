@@ -1,0 +1,38 @@
+#pragma once
+
+#define MASTER_LEFT
+
+//OLED
+#ifdef OLED_ENABLE
+#   define SPLIT_LAYER_STATE_ENABLE
+#   define SPLIT_LED_STATE_ENABLE
+#   define SPLIT_MODS_ENABLE
+#   define SPLIT_OLED_ENABLE
+#   define OLED_FONT_H "users/rbpatt2019/glcdfont.c"
+#   define OLED_TIMEOUT 30000
+#   define OLED_BRIGHTNESS 100
+#endif
+
+// leader key - enabled by default in userspace rules.mk
+#define LEADER_NO_TIMEOUT
+#define LEADER_TIMEOUT 1
+
+// OSM locks
+#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 1000
+#define TAPPING_TERM 200
+
+// Disable for memory
+#undef ENABLE_COMPILE_KEYCODE
+
+// Turn off rgb to save memory
+#undef RGBLIGHT_EFFECT_BREATHING
+#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#undef RGBLIGHT_EFFECT_SNAKE
+#undef RGBLIGHT_EFFECT_KNIGHT
+#undef RGBLIGHT_EFFECT_CHRISTMAS
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RGB_TEST
+#undef RGBLIGHT_EFFECT_ALTERNATING
+#undef RGBLIGHT_EFFECT_TWINKLE
