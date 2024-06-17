@@ -1,4 +1,5 @@
 # Junk files
+.envrc
 *.bak
 *.swp
 *~

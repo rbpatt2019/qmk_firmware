@@ -34,7 +34,7 @@ enum user_keycodes {
 #define LCTL_C LCTL(KC_C)
 #define LCTL_R LCTL(KC_R)
 #define LCTL_L LCTL(KC_L)
-#define LCTL_T LCTL(KC_T)
+#define LCTLT LCTL(KC_T) // no underscore to avoid conflict
 
 // Mac uk awkward keys
 #define MAC_HSH LALT(KC_3)
