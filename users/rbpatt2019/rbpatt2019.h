@@ -15,7 +15,7 @@ enum user_layer {
 // use KEYMAP_SAFE_RANGE for local functions
 enum user_keycodes {
     SPC_DOT,
-    PARENS,
+    PARENS = SAFE_RANGE,
     BRACES,
     CBRACES,
     GRAVES,
@@ -53,7 +53,7 @@ enum user_keycodes {
 #define BOT LCA(KC_DOWN)
 #define LEFT LCA(KC_LEFT)
 #define RIGHT LCA(KC_RIGHT)
-#define FULL LCA(KC_ENT)
+#define FULL G(C(KC_ENT))
 
 // Trilayer hacks for main board
 #define ENT_RAI LT(_UPPER, KC_ENT) // LT trilayer

@@ -11,26 +11,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case PARENS:
       if (record->event.pressed) {
-        SEND_STRING("()");
-        tap_code(KC_LEFT);
+        // if shift, type single
+        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
+            SEND_STRING("(");
+        } else {
+            SEND_STRING("()");
+            tap_code(KC_LEFT);
+        }
       }
       return false;
     case BRACES:
       if (record->event.pressed) {
-        SEND_STRING("[]");
-        tap_code(KC_LEFT);
+        // if shift, type single
+        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
+            SEND_STRING("[");
+        } else {
+            SEND_STRING("[]");
+            tap_code(KC_LEFT);
+        }
       }
       return false;
     case CBRACES:
       if (record->event.pressed) {
-        SEND_STRING("{}");
-        tap_code(KC_LEFT);
+        // if shift, type single
+        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
+            SEND_STRING("{");
+        } else {
+            SEND_STRING("{}");
+            tap_code(KC_LEFT);
+        }
       }
       return false;
     case GRAVES:
       if (record->event.pressed) {
         if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
           SEND_STRING("~");
+        } else if ((mods | oneshot_mods) & MOD_MASK_CTRL) {
+          // capacity to send single
+          SEND_STRING("`");
         } else {
           SEND_STRING("``");
           tap_code(KC_LEFT);
