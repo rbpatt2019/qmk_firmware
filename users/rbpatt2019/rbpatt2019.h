@@ -15,8 +15,6 @@ enum user_layer {
 // use KEYMAP_SAFE_RANGE for local functions
 enum user_keycodes {
     SPC_DOT,
-    QUOP = SAFE_RANGE,
-    JIGGLE,
     PARENS,
     BRACES,
     CBRACES,
