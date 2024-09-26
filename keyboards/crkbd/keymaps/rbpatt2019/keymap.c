@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
-#include "rbpatt2019.h"
+#include "custom_headers.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_split_3x6_3(
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       OSMLALT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, OSMLGUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          ESC_LOW, OSMLSFT, KC_BSPC, TD(SPC_DOT), ENT_RAI, OSMLCTL
+                                          ESC_LOW, OSMLSFT, KC_BSPC,     KC_SPC, ENT_RAI, OSMLCTL
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -63,9 +63,97 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, LALT_C,    LCTLT,  LCTL_R,    APPS, XXXXXXX,                      XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, DM_PLY1, DM_REC1, DM_RSTP, XXXXXXX, XXXXXXX,
+      QK_MAKE, SETTING,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, DM_PLY1, DM_REC1, DM_RSTP, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
   )
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  const uint8_t mods = get_mods();
+
+  switch (keycode) {
+    case PARENS:
+      if (record->event.pressed) {
+        // if shift, type single
+        if (mods & MOD_MASK_SHIFT) {
+            tap_code16(KC_LPRN);
+        } else {
+            tap_code16(KC_LPRN);
+            tap_code16(KC_RPRN);
+            tap_code16(KC_LEFT);
+        }
+      }
+      return false;
+    case BRACES:
+      if (record->event.pressed) {
+        // if shift, type single
+        if (mods & MOD_MASK_SHIFT) {
+            del_mods(MOD_MASK_SHIFT);
+            tap_code16(KC_LBRC);
+            set_mods(mods);
+        } else {
+            tap_code16(KC_LBRC);
+            tap_code16(KC_RBRC);
+            tap_code16(KC_LEFT);
+        }
+      }
+      return false;
+    case CBRACES:
+      if (record->event.pressed) {
+        // if shift, type single
+        if (mods & MOD_MASK_SHIFT) {
+            tap_code16(KC_LCBR);
+        } else {
+            tap_code16(KC_LCBR);
+            tap_code16(KC_RCBR);
+            tap_code16(KC_LEFT);
+        }
+      }
+      return false;
+    case GRAVES:
+      if (record->event.pressed) {
+        if (mods & MOD_MASK_SHIFT) {
+          SEND_STRING("~");
+        } else if (mods & MOD_MASK_CTRL) {
+          // capacity to send single
+          SEND_STRING("`");
+        } else {
+          SEND_STRING("``");
+          tap_code(KC_LEFT);
+        }
+      }
+      return false;
+    case ESC_LOW: // modified trilayer for LT - yes I know it's ugly
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        update_tri_layer(_LOWER, _UPPER, _ADJUST);
+      } else {
+        layer_off(_LOWER);
+        update_tri_layer(_LOWER, _UPPER, _ADJUST);
+      }
+      break;
+    case ENT_RAI: // modified trilayer for LT - yes I know it's ugly
+      if (record->event.pressed) {
+        layer_on(_UPPER);
+        update_tri_layer(_LOWER, _UPPER, _ADJUST);
+      } else {
+        layer_off(_UPPER);
+        update_tri_layer(_LOWER, _UPPER, _ADJUST);
+      }
+      break;
+  }
+  return true;
+}
+
+// Overrides
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
+const key_override_t shift_space_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_TAB);
+const key_override_t ctrl_space_key_override = ko_make_basic(MOD_MASK_CTRL, KC_SPC, S(KC_TAB));
+
+const key_override_t *key_overrides[] = {
+    &delete_key_override,
+    &shift_space_key_override,
+    &ctrl_space_key_override
 };
