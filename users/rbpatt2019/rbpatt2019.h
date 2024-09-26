@@ -1,5 +1,3 @@
-#pragma once
-
 #include <stdbool.h>
 #include "quantum_keycodes.h"
 
@@ -33,6 +31,7 @@ enum user_keycodes {
 #define LCTL_R LCTL(KC_R)
 #define LCTL_L LCTL(KC_L)
 #define LCTLT LCTL(KC_T) // no underscore to avoid conflict
+#define LALT_C A(KC_C)
 
 // Mac uk awkward keys
 #define MAC_HSH LALT(KC_3)
