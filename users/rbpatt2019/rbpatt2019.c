@@ -6,16 +6,16 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   const uint8_t mods = get_mods();
-  const uint8_t oneshot_mods = get_oneshot_mods();
 
   switch (keycode) {
     case PARENS:
       if (record->event.pressed) {
         // if shift, type single
-        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
-            SEND_STRING("(");
+        if (mods & MOD_MASK_SHIFT) {
+            tap_code(KC_LPRN);
         } else {
-            SEND_STRING("()");
+            tap_code(KC_LPRN);
+            tap_code(KC_RPRN);
             tap_code(KC_LEFT);
         }
       }
@@ -23,10 +23,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case BRACES:
       if (record->event.pressed) {
         // if shift, type single
-        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
-            SEND_STRING("[");
+        if (mods & MOD_MASK_SHIFT) {
+            delete_mod(MOD_MASK_SHIFT);
+            tap_code(KC_LBRC);
+            set_mods(mods);
         } else {
-            SEND_STRING("[]");
+            tap_code(KC_LBRC);
+            tap_code(KC_RBRC);
             tap_code(KC_LEFT);
         }
       }
@@ -34,19 +37,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case CBRACES:
       if (record->event.pressed) {
         // if shift, type single
-        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
-            SEND_STRING("{");
+        if (mods & MOD_MASK_SHIFT) {
+            tap_code(KC_LCBR);
         } else {
-            SEND_STRING("{}");
+            tap_code(KC_LCBR);
+            tap_code(KC_RCBR);
             tap_code(KC_LEFT);
         }
       }
       return false;
     case GRAVES:
       if (record->event.pressed) {
-        if ((mods | oneshot_mods) & MOD_MASK_SHIFT) {
+        if (mods & MOD_MASK_SHIFT) {
           SEND_STRING("~");
-        } else if ((mods | oneshot_mods) & MOD_MASK_CTRL) {
+        } else if (mods & MOD_MASK_CTRL) {
           // capacity to send single
           SEND_STRING("`");
         } else {
