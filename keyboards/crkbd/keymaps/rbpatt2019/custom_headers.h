@@ -32,7 +32,7 @@ enum user_keycodes {
 #define LALT_C A(KC_C)
 
 // Mac uk awkward keys
-#define MAC_HSH LALT(KC_3)
+#define MAC_HSH RALT(KC_3) // we need left option as lalt in alacritty
 #define MAC_DLR LSFT(KC_3)
 
 // Mac navigation...

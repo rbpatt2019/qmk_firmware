@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       GRAVES,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_SCLN,
+       KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       OSMLALT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, OSMLGUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -47,11 +47,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_UPPER] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, KC_AMPR, CBRACES, XXXXXXX,                      XXXXXXX, KC_RCBR, KC_PIPE, XXXXXXX, XXXXXXX, _______,
+      _______, XXXXXXX, XXXXXXX, KC_AMPR, KC_LCBR, XXXXXXX,                      XXXXXXX, KC_RCBR, KC_PIPE, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_ASTR,   KC_AT, MAC_HSH,  PARENS, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_MINS, KC_UNDS,  KC_EQL, _______,
+      _______, KC_ASTR,   KC_AT, MAC_HSH, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_MINS, KC_UNDS,  KC_EQL, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, MAC_DLR, KC_DLR, KC_PERC,  BRACES, XXXXXXX,                      XXXXXXX, KC_RBRC, KC_PLUS, KC_CIRC, KC_EXLM, _______,
+      _______, MAC_DLR, KC_DLR, KC_PERC,  KC_LBRC, XXXXXXX,                      XXXXXXX, KC_RBRC, KC_PLUS, KC_CIRC, KC_EXLM, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -71,60 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  const uint8_t mods = get_mods();
-
   switch (keycode) {
-    case PARENS:
-      if (record->event.pressed) {
-        // if shift, type single
-        if (mods & MOD_MASK_SHIFT) {
-            tap_code16(KC_LPRN);
-        } else {
-            tap_code16(KC_LPRN);
-            tap_code16(KC_RPRN);
-            tap_code16(KC_LEFT);
-        }
-      }
-      return false;
-    case BRACES:
-      if (record->event.pressed) {
-        // if shift, type single
-        if (mods & MOD_MASK_SHIFT) {
-            del_mods(MOD_MASK_SHIFT);
-            tap_code16(KC_LBRC);
-            set_mods(mods);
-        } else {
-            tap_code16(KC_LBRC);
-            tap_code16(KC_RBRC);
-            tap_code16(KC_LEFT);
-        }
-      }
-      return false;
-    case CBRACES:
-      if (record->event.pressed) {
-        // if shift, type single
-        if (mods & MOD_MASK_SHIFT) {
-            tap_code16(KC_LCBR);
-        } else {
-            tap_code16(KC_LCBR);
-            tap_code16(KC_RCBR);
-            tap_code16(KC_LEFT);
-        }
-      }
-      return false;
-    case GRAVES:
-      if (record->event.pressed) {
-        if (mods & MOD_MASK_SHIFT) {
-          SEND_STRING("~");
-        } else if (mods & MOD_MASK_CTRL) {
-          // capacity to send single
-          SEND_STRING("`");
-        } else {
-          SEND_STRING("``");
-          tap_code(KC_LEFT);
-        }
-      }
-      return false;
     case ESC_LOW: // modified trilayer for LT - yes I know it's ugly
       if (record->event.pressed) {
         layer_on(_LOWER);
