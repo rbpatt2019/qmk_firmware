@@ -33,10 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define OLED_BRIGHTNESS 100
 #endif
 
-// leader key - enabled by default in userspace rules.mk
-#define LEADER_NO_TIMEOUT
-#define LEADER_TIMEOUT 1
-
 // OSM locks
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 1000

@@ -22,85 +22,57 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, XXXXXXX,
+      XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_SCLN,
+      XXXXXXX,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      OSMLALT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, OSMLGUI,
+      XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_QUOT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          ESC_LOW, OSMLSFT, KC_BSPC,     KC_SPC, ENT_RAI, OSMLCTL
+                                           KC_ENT,   LOWER, KC_BSPC,     KC_SPC,   UPPER,  KC_TAB
                                       //`--------------------------'  `--------------------------'
 
   ),
 
     [_LOWER] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+      XXXXXXX, XXXXXXX,   KC_P7,   KC_P8,   KC_P9, XXXXXXX,                      XXXXXXX, DM_PLY1, DM_REC1, DM_RSTP, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_P1,   KC_P2,   KC_P3,   KC_P4, XXXXXXX,                      XXXXXXX,   KC_P7,   KC_P8,   KC_P9,   KC_P0, _______,
+      XXXXXXX,   KC_P0,   KC_P4,   KC_P5,   KC_P6, XXXXXXX,                      XXXXXXX, OSMLSFT, OSMLCTL, OSMLGUI, OSMLALT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX,   KC_P5, XXXXXXX,                      XXXXXXX,   KC_P6, _______, _______, KC_BSLS, _______,
+      XXXXXXX,  KC_NUM,   KC_P1,   KC_P2,   KC_P3, XXXXXXX,                      XXXXXXX,  KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          _______,   LOWER, _______,    _______,  ADJUST, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
     [_UPPER] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, KC_AMPR, KC_LCBR, XXXXXXX,                      XXXXXXX, KC_RCBR, KC_PIPE, XXXXXXX, XXXXXXX, _______,
+      XXXXXXX, XXXXXXX, MAC_GBP, KC_AMPR, KC_LCBR, KC_RCBR,                      XXXXXXX,  KC_GRV, KC_PIPE,  KC_DLR, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_ASTR,   KC_AT, MAC_HSH, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_MINS, KC_UNDS,  KC_EQL, _______,
+      XXXXXXX, KC_ASTR,   KC_AT, MAC_HSH, KC_LPRN, KC_RPRN,                      XXXXXXX,  KC_EQL, KC_MINS, KC_UNDS, KC_EXLM, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, MAC_DLR, KC_DLR, KC_PERC,  KC_LBRC, XXXXXXX,                      XXXXXXX, KC_RBRC, KC_PLUS, KC_CIRC, KC_EXLM, _______,
+      XXXXXXX, KC_CIRC, KC_PERC, KC_TILD, KC_LBRC, KC_RBRC,                      XXXXXXX, KC_PLUS, KC_SLSH, KC_BSLS, KC_QUES, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          _______,  ADJUST, _______,    _______,   UPPER, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
     [_ADJUST] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX,   KC_UP, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, LALT_C,    LCTLT,  LCTL_R,    APPS, XXXXXXX,                      XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, LALT_C,    LCTLT,  LCTL_R,    APPS, XXXXXXX,                      XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      QK_MAKE, SETTING,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, DM_PLY1, DM_REC1, DM_RSTP, XXXXXXX, XXXXXXX,
+      XXXXXXX, QK_MAKE,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          _______,  ADJUST, _______,    _______,  ADJUST, _______
                                       //`--------------------------'  `--------------------------'
   )
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case ESC_LOW: // modified trilayer for LT - yes I know it's ugly
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _UPPER, _ADJUST);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _UPPER, _ADJUST);
-      }
-      break;
-    case ENT_RAI: // modified trilayer for LT - yes I know it's ugly
-      if (record->event.pressed) {
-        layer_on(_UPPER);
-        update_tri_layer(_LOWER, _UPPER, _ADJUST);
-      } else {
-        layer_off(_UPPER);
-        update_tri_layer(_LOWER, _UPPER, _ADJUST);
-      }
-      break;
-  }
-  return true;
-}
-
 // Overrides
-const key_override_t delete_key_override = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
-const key_override_t shift_space_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_TAB);
-const key_override_t ctrl_space_key_override = ko_make_basic(MOD_MASK_CTRL, KC_SPC, S(KC_TAB));
+const key_override_t shift_space_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_DEL);
 
 const key_override_t *key_overrides[] = {
-    &delete_key_override,
-    &shift_space_key_override,
-    &ctrl_space_key_override
+    &shift_space_key_override
 };

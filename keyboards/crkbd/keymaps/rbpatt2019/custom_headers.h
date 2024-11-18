@@ -8,21 +8,17 @@ enum user_layer {
     _ADJUST
 };
 
-// Custom keycodes shared across maps
-// use KEYMAP_SAFE_RANGE for local functions
-enum user_keycodes {
-    SPC_DOT,
-    PARENS = SAFE_RANGE,
-    BRACES,
-    CBRACES,
-    GRAVES
-};
-
 // OSM abbrevs.
 #define OSMLGUI OSM(MOD_LGUI)
 #define OSMLCTL OSM(MOD_LCTL)
 #define OSMLALT OSM(MOD_LALT)
 #define OSMLSFT OSM(MOD_LSFT)
+
+// Custom Trilayer// Custom Trilayer// Custom Trilayer
+#define UPPER OSL(_UPPER)
+#define LOWER OSL(_LOWER)
+#define ADJUST OSL(_ADJUST)
+
 
 // Term shortcuts
 #define LCTL_C LCTL(KC_C)
@@ -33,14 +29,8 @@ enum user_keycodes {
 
 // Mac uk awkward keys
 #define MAC_HSH RALT(KC_3) // we need left option as lalt in alacritty
-#define MAC_DLR LSFT(KC_3)
+#define MAC_GBP LSFT(KC_3)
 
 // Mac navigation...
 #define APPS LGUI(KC_SPC)
 #define FIND LGUI(KC_F)
-#define MAC_APP LCTL(KC_UP)
-#define SETTING LGUI(KC_COMM)
-
-// Trilayer hacks for main board
-#define ENT_RAI LT(_UPPER, KC_ENT) // LT trilayer
-#define ESC_LOW LT(_LOWER, KC_ESC) // LT trilayer
