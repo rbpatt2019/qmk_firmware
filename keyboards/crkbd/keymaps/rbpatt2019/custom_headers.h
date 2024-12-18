@@ -1,24 +1,21 @@
 #include <stdbool.h>
 #include "quantum_keycodes.h"
 
-enum user_layer {
+enum layer {
     _COLEMAK,
     _LOWER,
     _UPPER,
     _ADJUST
 };
 
-// OSM abbrevs.
-#define OSMLGUI OSM(MOD_LGUI)
-#define OSMLCTL OSM(MOD_LCTL)
-#define OSMLALT OSM(MOD_LALT)
+// Custom keys
+#define SFT_TAB S(KC_TAB)
 #define OSMLSFT OSM(MOD_LSFT)
 
-// Custom Trilayer// Custom Trilayer// Custom Trilayer
+// Custom Trilayer
 #define UPPER OSL(_UPPER)
 #define LOWER OSL(_LOWER)
-#define ADJUST OSL(_ADJUST)
-
+#define ADJUST MO(_ADJUST)
 
 // Term shortcuts
 #define LCTL_C LCTL(KC_C)

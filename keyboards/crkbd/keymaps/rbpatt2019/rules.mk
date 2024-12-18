@@ -5,10 +5,9 @@
 
 LTO_ENABLE = yes  # Makes hex file smaller
 SPLIT_KEYBOARD = yes
-
-KEY_OVERRIDE_ENABLE = yes
 OLED_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
+LEADER_ENABLE = yes
 
 ifeq ($(strip $(OLED_ENABLE)), yes)
     SRC += features/oled.c
@@ -27,7 +26,7 @@ CONSOLE_ENABLE = no
 DEFERRED_EXEC_ENABLE = no
 GRAVE_ESC_ENABLE = no
 KEY_LOCK_ENABLE = no
-LEADER_ENABLE = no
+KEY_OVERRIDE_ENABLE = no
 MAGIC_ENABLE = no
 MIDI_ENABLE = no
 MOUSEKEY_ENABLE = no

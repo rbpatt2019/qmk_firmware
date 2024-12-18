@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_QUOT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ENT,   LOWER, KC_BSPC,     KC_SPC,   UPPER,  KC_TAB
+                                          KC_BSPC,   LOWER, OSMLSFT,     KC_SPC,   UPPER, QK_LEAD
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -37,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, XXXXXXX,   KC_P7,   KC_P8,   KC_P9, XXXXXXX,                      XXXXXXX, DM_PLY1, DM_REC1, DM_RSTP, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,   KC_P0,   KC_P4,   KC_P5,   KC_P6, XXXXXXX,                      XXXXXXX, OSMLSFT, OSMLCTL, OSMLGUI, OSMLALT, XXXXXXX,
+      XXXXXXX,   KC_P0,   KC_P4,   KC_P5,   KC_P6, XXXXXXX,                      XXXXXXX,  KC_ESC,  KC_TAB, SFT_TAB,  KC_ENT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,  KC_NUM,   KC_P1,   KC_P2,   KC_P3, XXXXXXX,                      XXXXXXX,  KC_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX,  KC_NUM,   KC_P1,   KC_P2,   KC_P3, XXXXXXX,                      XXXXXXX,  KC_DEL, _______, _______, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______,   LOWER, _______,    _______,  ADJUST, _______
                                       //`--------------------------'  `--------------------------'
@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, XXXXXXX, MAC_GBP, KC_AMPR, KC_LCBR, KC_RCBR,                      XXXXXXX,  KC_GRV, KC_PIPE,  KC_DLR, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_ASTR,   KC_AT, MAC_HSH, KC_LPRN, KC_RPRN,                      XXXXXXX,  KC_EQL, KC_MINS, KC_UNDS, KC_EXLM, XXXXXXX,
+      XXXXXXX, KC_EXLM,   KC_AT, MAC_HSH, KC_LPRN, KC_RPRN,                      XXXXXXX,  KC_EQL, KC_MINS, KC_UNDS, KC_ASTR, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_CIRC, KC_PERC, KC_TILD, KC_LBRC, KC_RBRC,                      XXXXXXX, KC_PLUS, KC_SLSH, KC_BSLS, KC_QUES, XXXXXXX,
+      XXXXXXX, KC_QUES, KC_PERC, KC_TILD, KC_LBRC, KC_RBRC,                      XXXXXXX, KC_PLUS, KC_SLSH, KC_BSLS, KC_CIRC, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______,  ADJUST, _______,    _______,   UPPER, _______
                                       //`--------------------------'  `--------------------------'
@@ -59,20 +59,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX,   KC_UP, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, LALT_C,    LCTLT,  LCTL_R,    APPS, XXXXXXX,                      XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,
+      XXXXXXX, LALT_C,    LCTLT,  LCTL_R,    APPS, XXXXXXX,                      XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, QK_MAKE,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, QK_MAKE,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______,  ADJUST, _______,    _______,  ADJUST, _______
                                       //`--------------------------'  `--------------------------'
   )
 };
 
-// Overrides
-const key_override_t shift_space_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_DEL);
-
-const key_override_t *key_overrides[] = {
-    &shift_space_key_override
-};
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_G)) {
+        set_oneshot_mods(MOD_BIT(KC_LGUI));
+    } else if (leader_sequence_one_key(KC_S)) {
+        set_oneshot_mods(MOD_BIT(KC_LSFT));
+    } else if (leader_sequence_one_key(KC_A)) {
+        set_oneshot_mods(MOD_BIT(KC_LALT));
+    } else if (leader_sequence_one_key(KC_C)) {
+        set_oneshot_mods(MOD_BIT(KC_LCTL));
+    } else if (leader_sequence_one_key(KC_T)) {
+        tap_code16(C(KC_A));
+    }
+}
