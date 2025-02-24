@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,  KC_NUM,   KC_P1,   KC_P2,   KC_P3, XXXXXXX,                      XXXXXXX,  KC_DEL, _______, _______, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______,   LOWER, _______,    _______,  ADJUST, _______
+                                          _______, _______, _______,    _______,  ADJUST, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_QUES, KC_PERC, KC_TILD, KC_LBRC, KC_RBRC,                      XXXXXXX, KC_PLUS, KC_SLSH, KC_BSLS, KC_CIRC, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______,  ADJUST, _______,    _______,   UPPER, _______
+                                          _______,  ADJUST, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -65,21 +65,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, QK_MAKE,  LCTL_L,    FIND,  LCTL_C, XXXXXXX,                      XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______,  ADJUST, _______,    _______,  ADJUST, _______
+                                          _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
   )
 };
 
 void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_G)) {
-        set_oneshot_mods(MOD_BIT(KC_LGUI));
-    } else if (leader_sequence_one_key(KC_S)) {
-        set_oneshot_mods(MOD_BIT(KC_LSFT));
-    } else if (leader_sequence_one_key(KC_A)) {
-        set_oneshot_mods(MOD_BIT(KC_LALT));
-    } else if (leader_sequence_one_key(KC_C)) {
+    if (leader_sequence_one_key(KC_N)) {
         set_oneshot_mods(MOD_BIT(KC_LCTL));
     } else if (leader_sequence_one_key(KC_T)) {
+        set_oneshot_mods(MOD_BIT(KC_LALT));
+    } else if (leader_sequence_one_key(KC_E)) {
+        set_oneshot_mods(MOD_BIT(KC_LGUI));
+    } else if (leader_sequence_one_key(KC_S)) {
         tap_code16(C(KC_A));
     }
 }
