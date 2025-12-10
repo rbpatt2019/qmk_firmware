@@ -12,6 +12,11 @@ enum layer {
 #define SFT_TAB S(KC_TAB)
 #define OSMLSFT OSM(MOD_LSFT)
 
+// Teams
+#define T_MUTE S(G(KC_M))
+#define T_VIDEO S(G(KC_O))
+#define T_HAND S(G(KC_K))
+
 // Custom Trilayer
 #define UPPER OSL(_UPPER)
 #define LOWER OSL(_LOWER)
